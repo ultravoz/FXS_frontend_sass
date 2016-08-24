@@ -1,0 +1,90 @@
+// Vendor imports
+@import "../../../website/css/less/vendor/lesshat.less";  // lesshat - LESS Mixins library
+// Application variables & mixins
+@import "../../../website/css/less/vars.less";
+@import "../../../website/css/less/mixins.less";
+@import "heatmap-custom-price.less";
+
+
+// heatmap layout
+.fxs_widget_column {
+  .column-default-parameters(@grid-gutter-width-xs);
+  float: left;
+  padding-bottom: @grid-gutter-width-xs;
+  width: 50%;
+}
+
+// Properties & variants
+.fxs_widget_heatmap {
+
+  .fxs_widget_price {
+    padding: 0.25rem 0.33rem;
+    &.fxs_heatmap_slightlybullish { background-color: lighten(@success_clr, 10%); }
+    &.fxs_heatmap_bullish{ background-color: @success_clr; }
+    &.fxs_heatmap_slightlybearish { background-color: lighten(@error_clr, 20%); }
+    &.fxs_heatmap_bearish { background-color: @error_clr; }
+    &.fxs_heatmap_neutral { background-color: @light_2_clr; }
+
+    .fxs_asset_label {
+      font-size: @txt_size_small;
+      &, a, a:hover { cursor: pointer; }
+      &::before { margin-top: 0.3rem; }
+    }
+
+    .fxs_asset_label::before, .fxs_price_change, .fxs_asset_label a { color: @lightest_clr; }
+    
+    .fxs_price_change, .fxs_asset_label::before { font-size: @txt_size_xsmall; }
+
+    &:hover{
+      opacity: 0.75;
+      cursor: pointer;
+    }
+
+  }
+
+  // Widget sizes variants
+  &.fxs_widget_mini{
+    //
+  }
+  &.fxs_widget_default{
+    .fxs_widget_column {
+      .make-s-column(4);
+      .make-l-column(3);
+    }
+  }
+  &.fxs_widget_big {
+    .fxs_widget_column {
+      .make-s-column(3);
+      .make-m-column(2);
+    }
+  }
+}
+
+// heatmap gradient legend
+.fxs_widget_heatmap_legend,
+.fxs_widget_heatmap_gradient_linear {
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.fxs_widget_heatmap_gradient_linear{
+  .background-image(linear-gradient(
+    to right,
+    @success_clr 0px,
+    @success_clr 20px,
+    @lightest_clr 21px,
+    lighten(@success_clr, 10%) 22px,
+    lighten(@success_clr, 10%) 40px,
+    @lightest_clr 21px,
+    @light_2_clr 42px,
+    @light_2_clr 60px,
+    @lightest_clr 61px,
+    lighten(@error_clr, 20%) 62px,
+    lighten(@error_clr, 20%) 80px,
+    @lightest_clr 81px,
+    @error_clr 82px,
+    @error_clr 100px
+    ));
+  width: 100px;
+  height: 18px;
+}
